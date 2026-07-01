@@ -3,6 +3,8 @@ stages:
 
 deploy:
   stage: deploy
+  tags:
+    - myrunnerForever
   script:
     - docker build -t react-app:latest .
     - docker stop react-frontend || true
