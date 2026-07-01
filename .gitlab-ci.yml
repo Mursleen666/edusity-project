@@ -1,0 +1,12 @@
+stages:
+  - deploy
+
+deploy:
+  stage: deploy
+  script:
+    - docker build -t react-app:latest .
+    - docker stop react-frontend || true
+    - docker rm react-frontend || true
+    - docker run -d -p 80:80 --name react-frontend react-app:latest
+  only:
+    - main
